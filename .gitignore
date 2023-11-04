@@ -1,0 +1,9 @@
+node_modules
+.env
+.serverless
+.webpack
+package-lock.json
+Body.json
+User.json
+.vscode/*
+.DS_Store

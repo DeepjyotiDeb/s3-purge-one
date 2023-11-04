@@ -1,0 +1,66 @@
+org: deepjyotideb
+# console: true
+service: user
+useDotenv: true
+
+# frameworkVersion: ">=1.2.0 <2.0.0"
+# frameworkVersion: '^3'
+package:
+  individually: true
+  excludeDevDependencies: true
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-bundle
+  - serverless-offline
+
+custom:
+  # secrets: ${file(.env.${sls:stage, self:provider.stage, 'dev'})}
+  serverless-offline:
+    httpPort: 4000
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: ${opt:stage, 'dev'}
+  profile: ${env:PROFILE}
+  region: ${env:REGION}
+  memorySize: 128
+  timeout: 30
+
+functions:
+  deleteBlog:
+    handler: services/service.helloS3
+    events:
+      - http:
+          path: /delete
+          method: delete
+          cors: true
+
+  # putObj:
+  #   handler: services/service.putObj
+  #   events:
+  #     - http:
+  #         path: /put-obj
+  #         method: put
+  #         cors: true
+  createPresignedUrl:
+    handler: services/service.createPresignedUrl
+    disableLogs: true
+    events:
+      - http:
+          path: /create-presigned-url
+          method: post
+          cors: true
+
+  insertIntoUrl:
+    handler: services/service.uploadFile
+    disableLogs: true
+    events:
+      - http:
+          path: /upload
+          method: post
+          cors: true
+
+resources:
+  - ${file(resources/api-gateway-errors.yml)}

@@ -1,0 +1,28 @@
+{
+  "version": "0",
+  "id": "9213e607-c1cc-6a77-2bda-e244601551ca",
+  "detail-type": "Object Created",
+  "source": "aws.s3",
+  "account": "860768680752",
+  "time": "2023-11-02T07:58:45Z",
+  "region": "ap-south-1",
+  "resources": [
+    "arn:aws:s3:::stream-bin"
+  ],
+  "detail": {
+    "version": "0",
+    "bucket": {
+      "name": "stream-bin"
+    },
+    "object": {
+      "key": "WhatsApp Image 2022-10-01 at 11.29.56 AM.jpeg",
+      "size": 175567,
+      "etag": "df974bf70ef2c060ab89e3f05dcc3c31",
+      "sequencer": "00654356B58575E6BC"
+    },
+    "request-id": "W539YBE0178Q58MA",
+    "requester": "860768680752",
+    "source-ip-address": "103.249.6.34",
+    "reason": "PutObject"
+  }
+}

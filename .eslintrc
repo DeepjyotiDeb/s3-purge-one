@@ -1,0 +1,103 @@
+{
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "simple-import-sort",
+        "unused-imports"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
+    "rules": {
+        "no-unused-vars": "off",
+        "no-console": "warn",
+        "@typescript-eslint/quotes": [
+            "error",
+            "single",
+            {
+                "avoidEscape": true,
+                "allowTemplateLiterals": true
+            }
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        //#region  //*=========== Unused Import ===========
+        "@typescript-eslint/no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "warn",
+        "unused-imports/no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "varsIgnorePattern": "^_",
+                "args": "after-used",
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        //#endregion  //*======== Unused Import ===========
+        //#region  //*=========== Import Sort ===========
+        "simple-import-sort/exports": "warn",
+        "simple-import-sort/imports": [
+            "warn",
+            {
+                "groups": [
+                    // ext library & side effect imports
+                    [
+                        "^@?\\w",
+                        "^\\u0000"
+                    ],
+                    // Lib and hooks
+                    [
+                        "^libs",
+                        "^hooks",
+                        "^utils"
+                    ],
+                    // static data
+                    [
+                        "^models"
+                    ],
+                    // components
+                    [
+                        "^components",
+                        "^container"
+                    ],
+                    // tests
+                    [
+                        "^tests"
+                    ],
+                    // Other imports
+                    [
+                        "^"
+                    ],
+                    // relative paths up until 3 level
+                    [
+                        "^\\./?$",
+                        "^\\.(?!/?$)",
+                        "^\\.\\./?$",
+                        "^\\.\\.(?!/?$)",
+                        "^\\.\\./\\.\\./?$",
+                        "^\\.\\./\\.\\.(?!/?$)",
+                        "^\\.\\./\\.\\./\\.\\./?$",
+                        "^\\.\\./\\.\\./\\.\\.(?!/?$)"
+                    ],
+                    [
+                        "^@/types"
+                    ],
+                    // other that didnt fit in
+                    [
+                        "^"
+                    ]
+                ]
+            }
+        ],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-explicit-any": "warn"
+    },
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    }
+}
